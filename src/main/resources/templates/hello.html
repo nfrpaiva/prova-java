@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt_BR" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
+    />
+    <title>Prova java</title>
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+        <strong>Success!</strong> It is working as we expected
+      </div>
+      <table class="table table.striped">
+        <thead>
+          <th>ID</th>
+          <TH>Nome</TH>
+          <th>Telefone</th>
+        </thead>
+        <tbody>
+          <tr th:each="contato: ${contatos}">
+            <td th:text="${contato.id}">1</td>
+            <td th:text="${contato.nome}">Nome Contato</td>
+            <td th:text="${contato.telefone}">+55111111111</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script th:src="@{webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <script th:src="@{webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+  </body>
+</html>
