@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.tokiomarine.prova.domain.Contato;
 
 @Controller
-@RequestMapping("/hello")
+@RequestMapping("/")
 public class HelloController {
 
     public HelloController(){
@@ -39,7 +39,7 @@ public class HelloController {
         model.addAttribute("contatos", this.contatos);
         model.addAttribute("contato", new Contato(20l, "Um contato", "+55119983495344"));
 
-        return "hello";
+        return "index";
     }
 
     @PostMapping
@@ -51,7 +51,7 @@ public class HelloController {
         model.addAttribute("contato", new Contato(20l, "Um contato", "+55119983495344"));
         model.addAttribute("mensagem", "Sucesso!");
 
-        return "hello";
+        return "index";
 
     }
 
