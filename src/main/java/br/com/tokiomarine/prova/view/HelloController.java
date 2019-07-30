@@ -18,42 +18,38 @@ import br.com.tokiomarine.prova.domain.Contato;
 @RequestMapping("/hello")
 public class HelloController {
 
-    private static Logger logger = LoggerFactory.getLogger(HelloController.class);
-
-    @GetMapping
-    private String getHello(Model model) {
-
-        List<Contato> contatos = contatos();
-
-        logger.info("Contatos: {}", contatos);
-
-        model.addAttribute("contatos", contatos);
-        model.addAttribute("contato1", new Contato());
-
-        return "hello";
-    }
-
-    private List<Contato> contatos() {
+    public HelloController(){
         List<Contato> contatos = new ArrayList<>();
         Contato c1 = new Contato(1l, "Pessoa 01", "+5511999999999");
         Contato c2 = new Contato(2l, "Pessoa 02", "+5511988888888");
         contatos.add(c1);
         contatos.add(c2);
-        return contatos;
+        this.contatos =  contatos;
     }
 
-    @PostMapping("contato")
-    public String inserirContato (@ModelAttribute("contato1") Contato contato, Model model){
-        logger.info("Vejamos se o contato chegou : {}", contato);
+    private List<Contato> contatos;
 
-        List<Contato> contatos = contatos();
+    private static Logger logger = LoggerFactory.getLogger(HelloController.class);
 
-        logger.info("Contatos: {}", contatos);
+    @GetMapping
+    private String getHello(Model model) {
 
-        contatos.add(contato);
+        logger.info("Contatos: {}", this.contatos);
+
+        model.addAttribute("contatos", this.contatos);
+        model.addAttribute("contato", new Contato(20l, "Um contato", "+55119983495344"));
+
+        return "hello";
+    }
+
+    @PostMapping
+    public String inserirContato (@ModelAttribute("contato") Contato contato, Model model){
+        
+        this.contatos.add(contato);
 
         model.addAttribute("contatos", contatos);
-        model.addAttribute("contato1", new Contato());
+        model.addAttribute("contato", new Contato(20l, "Um contato", "+55119983495344"));
+        model.addAttribute("mensagem", "Sucesso!");
 
         return "hello";
 

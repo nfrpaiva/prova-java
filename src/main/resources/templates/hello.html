@@ -14,40 +14,51 @@
   </head>
   <body>
     <div class="container">
+      
       <br />
-      <div class="alert alert-success">
+      <div th:if="${mensagem}" class="alert alert-success">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
-        <strong>Success!</strong> It is working as we expected
+        <span th:text="${mensagem}"></span>
       </div>
-      <table class="table table.striped">
-        <thead>
-          <th>ID</th>
-          <TH>Nome</TH>
-          <th>Telefone</th>
-        </thead>
-        <tbody>
-          <tr th:each="contato: ${contatos}">
-            <td th:text="${contato.id}">1</td>
-            <td th:text="${contato.nome}">Nome Contato</td>
-            <td th:text="${contato.telefone}">+55111111111</td>
-          </tr>
-        </tbody>
-      </table>
-      <h1>Form</h1>
+      
       <form
         action="#"
-        th:action="@{contato}"
-        th:object="${contato1}"
+        th:action="@{/hello}"
+        th:object="${contato}"
         method="post"
       >
-        <p>Id: <input type="text" th:field="*{id}" /></p>
-        <p>Nome: <input type="text" th:field="*{nome}" /></p>
-        <p>Telefone: <input type="text" th:field="*{telefone}" /></p>
+        <div class="form-group">
+          <label for="id">Id</label>
+          <input class="form-control" type="text" th:field="*{id}" />
+        </div>
+        <div class="form-group">
+          <label for="nome">nome</label>
+          <input class="form-control" type="text" th:field="*{nome}" />
+        </div>
+        <div class="form-group">
+          <label for="telefone">Id</label>
+          <input class="form-control" type="text" th:field="*{telefone}" />
+        </div>
+
         <p>
           <input class="btn btn-primary" type="submit" value="Submit" />
-          <input class ="btn btn-sucess" type="reset" value="Reset" />
+          <input class="btn btn-success" type="reset" value="Reset" />
         </p>
       </form>
+      <table th:if="${contatos.size() > 0}" class="table table.striped">
+          <thead>
+            <th>ID</th>
+            <TH>Nome</TH>
+            <th>Telefone</th>
+          </thead>
+          <tbody>
+            <tr th:each="contato: ${contatos}">
+              <td th:text="${contato.id}">1</td>
+              <td th:text="${contato.nome}">Nome Contato</td>
+              <td th:text="${contato.telefone}">+55111111111</td>
+            </tr>
+          </tbody>
+        </table>
     </div>
     <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
