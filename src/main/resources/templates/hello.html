@@ -8,7 +8,7 @@
     />
     <link
       rel="stylesheet"
-      th:href="@{webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
+      th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
     />
     <title>Prova java</title>
   </head>
@@ -33,8 +33,23 @@
           </tr>
         </tbody>
       </table>
+      <h1>Form</h1>
+      <form
+        action="#"
+        th:action="@{contato}"
+        th:object="${contato1}"
+        method="post"
+      >
+        <p>Id: <input type="text" th:field="*{id}" /></p>
+        <p>Nome: <input type="text" th:field="*{nome}" /></p>
+        <p>Telefone: <input type="text" th:field="*{telefone}" /></p>
+        <p>
+          <input class="btn btn-primary" type="submit" value="Submit" />
+          <input class ="btn btn-sucess" type="reset" value="Reset" />
+        </p>
+      </form>
     </div>
-    <script th:src="@{webjars/jquery/3.4.1/jquery.min.js}"></script>
-    <script th:src="@{webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
   </body>
 </html>
